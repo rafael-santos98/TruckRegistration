@@ -54,9 +54,18 @@ namespace TruckRegistration.Domain.Commands
 
                 if (validationResult.IsValid)
                 {
-                    if (truck != null)
+                    var truckToUpdate = await _truckRepository.GetById(truck.Id);
+
+                    if (truckToUpdate != null)
                     {
-                        await _truckRepository.SaveOrUpdate(truck);
+                        truckToUpdate = new Truck(truck.Description, 
+                            truck.Model, 
+                            truck.ManufactureYear,
+                            truck.ModelYear, 
+                            truck.Chassi, 
+                            truck.Renavam);
+
+                        await _truckRepository.SaveOrUpdate(truckToUpdate);
                         await _truckRepository.Commit();
                     }
                 }
