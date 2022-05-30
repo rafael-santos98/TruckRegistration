@@ -17,7 +17,8 @@ namespace TruckRegistration.Domain.Commands.Validations.Truck
 
             RuleFor(c => c.Description)
                 .NotEmpty()
-                .WithMessage(FieldIsRequired(fieldName));
+                .WithMessage(FieldIsRequired(fieldName))
+                .MaximumLength(100);
         }
 
         protected void ValidateModel()
@@ -53,7 +54,8 @@ namespace TruckRegistration.Domain.Commands.Validations.Truck
 
             RuleFor(c => c.Renavam)
                 .NotEmpty()
-                .WithMessage(FieldIsRequired(fieldName));
+                .WithMessage(FieldIsRequired(fieldName))
+                .MaximumLength(30);
         }
 
         protected void ValidateColor()
@@ -62,7 +64,8 @@ namespace TruckRegistration.Domain.Commands.Validations.Truck
 
             RuleFor(c => c.Color)
                 .NotEmpty()
-                .WithMessage(FieldIsRequired(fieldName));
+                .WithMessage(FieldIsRequired(fieldName))
+                .MaximumLength(30);
         }
 
         private string FieldIsRequired(string fieldName)

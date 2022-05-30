@@ -18,7 +18,7 @@ namespace TruckRegistration.Infra.Data.Mappings
 
             builder.Property(c => c.Description)
                 .HasColumnType("varchar(100)")
-                .HasMaxLength(50)
+                .HasMaxLength(100)
                 .IsRequired();
 
             builder.Property(c => c.Model)
@@ -39,8 +39,8 @@ namespace TruckRegistration.Infra.Data.Mappings
                 .IsRequired();
 
             builder.Property(c => c.Renavam)
-                .HasColumnType("varchar(50)")
-                .HasMaxLength(50)
+                .HasColumnType("varchar(30)")
+                .HasMaxLength(30)
                 .IsRequired();
 
             builder.Property(c => c.Color)
