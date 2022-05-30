@@ -16,10 +16,9 @@ namespace TruckRegistration.Services.Api.Configurations
                 s.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Agência de Viagem",
-                    Description = "Agência de Viagem API Swagger surface",
-                    Contact = new OpenApiContact { Name = "Rafael Rodrigues" },
-                    License = new OpenApiLicense { Name = "MIT", Url = new Uri("https://github.com/EduardoPires/EquinoxProject/blob/master/LICENSE") }
+                    Title = "Truck registration",
+                    Description = "Truck registration API Swagger surface",
+                    Contact = new OpenApiContact { Name = "Rafael Rodrigues", Email = "rafael.rodrigues.dsv@gmail.com" },
                 });
 
                 s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme

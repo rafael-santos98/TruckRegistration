@@ -9,7 +9,7 @@ using TruckRegistration.Application.Models.Response;
 using TruckRegistration.Services.Api.Controllers;
 
 namespace TruckRegistration.Services.Api.V1.Controllers
-{    
+{
     [ApiVersion("1.0")]
     [Route("truck-registration/v{version:apiVersion}/trucks")]
     [ApiController]

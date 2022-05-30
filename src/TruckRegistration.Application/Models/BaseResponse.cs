@@ -37,7 +37,7 @@ namespace TruckRegistration.Application.Models.Response
         }
 
         [JsonIgnore]
-        public bool IsValid { get; set; }       
+        public bool IsValid { get; set; }
 
         [JsonIgnore]
         public object ObjectItem { get; set; }
