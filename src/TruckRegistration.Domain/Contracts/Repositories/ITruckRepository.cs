@@ -10,7 +10,7 @@ namespace TruckRegistration.Domain.Contracts.Repositories
         Task<IEnumerable<Truck>> GetAll(bool asNoTracking = true);
         Task<Truck> GetById(Guid id, bool asNoTracking = true);
         Task<Truck> SaveOrUpdate(Truck truck);
-        void Remove(Truck truck);
+        Task<bool> Remove(Guid id);
         Task Commit();
     }
 }

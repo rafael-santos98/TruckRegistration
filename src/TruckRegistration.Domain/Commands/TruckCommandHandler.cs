@@ -79,11 +79,10 @@ namespace TruckRegistration.Domain.Commands
 
                 if (validationResult.IsValid)
                 {
-                    truck = await _truckRepository.GetById(id).ConfigureAwait(true);
+                    var deleted = await _truckRepository.Remove(truck.Id);
 
-                    if (truck != null)
+                    if (deleted)
                     {
-                        _truckRepository.Remove(truck);
                         await _truckRepository.Commit();
                     }
                 }

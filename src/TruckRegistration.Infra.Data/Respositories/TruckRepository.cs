@@ -59,9 +59,17 @@ namespace TruckRegistration.Infra.Data.Respositories
             return truck;
         }
 
-        public void Remove(Truck truck)
+        public async Task<bool> Remove(Guid id)
         {
-            DbSet.Remove(truck);
+            var truck = await GetById(id);
+
+            if (truck != null)
+            {
+                DbSet.Remove(truck);
+                return true;
+            }
+
+            return false;
         }
 
         public async Task Commit()
