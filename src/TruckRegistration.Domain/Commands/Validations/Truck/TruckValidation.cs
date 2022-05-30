@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using System;
 
-namespace TruckRegistration.Domain.Commands.Validations.Caminhoes
+namespace TruckRegistration.Domain.Commands.Validations.Truck
 {
     public abstract class TruckValidation<T> : AbstractValidator<T> where T : Entities.Truck
     {

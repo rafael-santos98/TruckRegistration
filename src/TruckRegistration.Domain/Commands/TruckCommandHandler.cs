@@ -1,5 +1,5 @@
 ﻿using System;
-using TruckRegistration.Domain.Commands.Validations.Caminhoes;
+using TruckRegistration.Domain.Commands.Validations.Truck;
 using TruckRegistration.Domain.Contracts.Commands;
 using TruckRegistration.Domain.Contracts.Repositories;
 using TruckRegistration.Domain.Entities;

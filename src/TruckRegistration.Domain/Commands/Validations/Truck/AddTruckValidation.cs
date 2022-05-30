@@ -1,4 +1,4 @@
-﻿namespace TruckRegistration.Domain.Commands.Validations.Caminhoes
+﻿namespace TruckRegistration.Domain.Commands.Validations.Truck
 {
     public class AddTruckValidation : TruckValidation<Entities.Truck>
     {
