@@ -14,7 +14,12 @@ namespace TruckRegistration.Services.Api.Controllers
         {
             if (IsOperationValid())
             {
-                return Ok(result);
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+
+                return NoContent();
             }
 
             return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>
