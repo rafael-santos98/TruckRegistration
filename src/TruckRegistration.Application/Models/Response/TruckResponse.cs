@@ -10,7 +10,7 @@ namespace TruckRegistration.Application.Models.Response
         public EModel? Model { get; set; }
         public int? ManufactureYear { get; set; }
         public int? ModelYear { get; set; }
-        public string Chassi { get; set; }
         public string Renavam { get; set; }
+        public string Color { get; set; }
     }
 }

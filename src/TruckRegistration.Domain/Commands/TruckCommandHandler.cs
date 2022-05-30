@@ -61,9 +61,9 @@ namespace TruckRegistration.Domain.Commands
                         truckToUpdate = new Truck(truck.Description, 
                             truck.Model, 
                             truck.ManufactureYear,
-                            truck.ModelYear, 
-                            truck.Chassi, 
-                            truck.Renavam);
+                            truck.ModelYear,
+                            truck.Renavam,
+                            truck.Color);
 
                         await _truckRepository.SaveOrUpdate(truckToUpdate);
                         await _truckRepository.Commit();

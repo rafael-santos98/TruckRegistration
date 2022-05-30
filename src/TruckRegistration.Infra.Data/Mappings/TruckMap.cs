@@ -16,12 +16,21 @@ namespace TruckRegistration.Infra.Data.Mappings
                .HasColumnName("Id")
                .HasDefaultValueSql("NEWID()");
 
+            builder.Property(c => c.Description)
+                .HasColumnType("varchar(100)")
+                .HasMaxLength(50)
+                .IsRequired();
+
             builder.Property(c => c.Model)
-                .HasColumnType("varchar(2)")
+                .HasColumnType("varchar(3)")
                 .HasMaxLength(3)
                 .HasConversion(
                     v => v.ToString(),
                     v => (EModel)Enum.Parse(typeof(EModel), v))
+                .IsRequired();
+
+            builder.Property(c => c.ManufactureYear)
+                .HasColumnType("int")
                 .IsRequired();
 
             builder.Property(c => c.ModelYear)
@@ -29,8 +38,14 @@ namespace TruckRegistration.Infra.Data.Mappings
                 .HasMaxLength(3)
                 .IsRequired();
 
-            builder.Property(c => c.ManufactureYear)
-                .HasColumnType("int")
+            builder.Property(c => c.Renavam)
+                .HasColumnType("varchar(50)")
+                .HasMaxLength(50)
+                .IsRequired();
+
+            builder.Property(c => c.Color)
+                .HasColumnType("varchar(30)")
+                .HasMaxLength(50)
                 .IsRequired();
         }
     }

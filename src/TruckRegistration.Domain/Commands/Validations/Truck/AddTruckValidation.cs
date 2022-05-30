@@ -8,8 +8,8 @@
             ValidateModel();
             ValidateManufactureYear();
             ValidateModelYear();
-            ValidateChassi();
             ValidateRenavam();
+            ValidateColor();
         }
     }
 }

@@ -9,21 +9,21 @@ namespace TruckRegistration.Domain.Entities
 
         }
 
-        public Truck(string description, EModel? model, int? manufactureYear, int? modelYear, string chassi, string renavam)
+        public Truck(string description, EModel? model, int? manufactureYear, int? modelYear, string renavam, string color)
         {
             this.Description = description;
             this.Model = model;
             this.ManufactureYear = manufactureYear;
             this.ModelYear = modelYear; 
-            this.Chassi = chassi;
             this.Renavam = renavam;
+            this.Color = color;
         }
 
         public string Description { get; set; }
         public EModel? Model { get; set; }
         public int? ManufactureYear { get; set; }
-        public int? ModelYear { get; set; }        
-        public string Chassi { get; set; }
+        public int? ModelYear { get; set; }
         public string Renavam { get; set; }
+        public string Color { get; set; }
     }
 }

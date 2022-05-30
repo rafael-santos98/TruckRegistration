@@ -47,20 +47,20 @@ namespace TruckRegistration.Domain.Commands.Validations.Truck
                 .GreaterThan(0).WithMessage($"The field is greater than zero (0) for the field {fieldName}.");
         }
     
-        protected void ValidateChassi()
-        {
-            var fieldName = "chassi";
-
-            RuleFor(c => c.Chassi)
-                .NotEmpty()
-                .WithMessage(FieldIsRequired(fieldName));
-        }
-
         protected void ValidateRenavam()
         {
             var fieldName = "renavam";
 
             RuleFor(c => c.Renavam)
+                .NotEmpty()
+                .WithMessage(FieldIsRequired(fieldName));
+        }
+
+        protected void ValidateColor()
+        {
+            var fieldName = "color";
+
+            RuleFor(c => c.Color)
                 .NotEmpty()
                 .WithMessage(FieldIsRequired(fieldName));
         }

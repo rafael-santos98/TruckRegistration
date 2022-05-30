@@ -16,8 +16,8 @@ namespace TruckRegistration.Domain.Commands.Validations.Truck
             ValidateModel();
             ValidateManufactureYear();
             ValidateModelYear();
-            ValidateChassi();
             ValidateRenavam();
+            ValidateColor();
         }
 
         private void ValidateIfExistsItem()
