@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Text.Json.Serialization;
 using TruckRegistration.Services.Api.Configurations;
 
 namespace TruckRegistration.Services.Api
@@ -40,6 +41,7 @@ namespace TruckRegistration.Services.Api
             services.AddControllers().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.IgnoreNullValues = true;
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             });
         }
 
