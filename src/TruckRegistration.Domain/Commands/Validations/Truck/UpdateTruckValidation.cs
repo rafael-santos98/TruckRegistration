@@ -14,7 +14,7 @@ namespace TruckRegistration.Domain.Commands.Validations.Truck
             ValidateIfExistsItem();
             ValidateModel();
             ValidateModelYear();
-            ValidateManufactureYear();           
+            ValidateManufactureYear();
         }
 
         private void ValidateIfExistsItem()
