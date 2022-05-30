@@ -11,6 +11,15 @@ namespace TruckRegistration.Domain.Commands.Validations.Truck
                 .NotEqual(Guid.Empty);
         }
 
+        protected void ValidateDescription()
+        {
+            var fieldName = "description";
+
+            RuleFor(c => c.Description)
+                .NotEmpty()
+                .WithMessage(FieldIsRequired(fieldName));
+        }
+
         protected void ValidateModel()
         {
             var fieldName = "model";
@@ -18,6 +27,15 @@ namespace TruckRegistration.Domain.Commands.Validations.Truck
             RuleFor(c => c.Model)
                 .NotEmpty()
                 .WithMessage(FieldIsRequired(fieldName));
+        }
+
+        protected void ValidateManufactureYear()
+        {
+            var fieldName = "manufacture year";
+
+            RuleFor(c => c.ManufactureYear)
+                .NotEmpty().WithMessage(FieldIsRequired(fieldName))
+                .GreaterThan(0).WithMessage($"The field is greater than zero (0) for the field {fieldName}.");
         }
 
         protected void ValidateModelYear()
@@ -28,14 +46,23 @@ namespace TruckRegistration.Domain.Commands.Validations.Truck
                 .NotEmpty().WithMessage(FieldIsRequired(fieldName))
                 .GreaterThan(0).WithMessage($"The field is greater than zero (0) for the field {fieldName}.");
         }
-
-        protected void ValidateManufactureYear()
+    
+        protected void ValidateChassi()
         {
-            var fieldName = "manufacture year";
+            var fieldName = "chassi";
 
-            RuleFor(c => c.ManufactureYear)
-                .NotEmpty().WithMessage(FieldIsRequired(fieldName))
-                .GreaterThan(0).WithMessage($"The field is greater than zero (0) for the field {fieldName}.");
+            RuleFor(c => c.Chassi)
+                .NotEmpty()
+                .WithMessage(FieldIsRequired(fieldName));
+        }
+
+        protected void ValidateRenavam()
+        {
+            var fieldName = "renavam";
+
+            RuleFor(c => c.Renavam)
+                .NotEmpty()
+                .WithMessage(FieldIsRequired(fieldName));
         }
 
         private string FieldIsRequired(string fieldName)

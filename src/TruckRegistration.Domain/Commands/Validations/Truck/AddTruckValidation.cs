@@ -4,9 +4,12 @@
     {
         public AddTruckValidation()
         {
+            ValidateDescription();
             ValidateModel();
-            ValidateModelYear();
             ValidateManufactureYear();
+            ValidateModelYear();
+            ValidateChassi();
+            ValidateRenavam();
         }
     }
 }

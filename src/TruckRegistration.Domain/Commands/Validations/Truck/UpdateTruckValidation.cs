@@ -12,9 +12,12 @@ namespace TruckRegistration.Domain.Commands.Validations.Truck
             _truckRepository = truckRepository;
             ValidateId();
             ValidateIfExistsItem();
+            ValidateDescription();
             ValidateModel();
-            ValidateModelYear();
             ValidateManufactureYear();
+            ValidateModelYear();
+            ValidateChassi();
+            ValidateRenavam();
         }
 
         private void ValidateIfExistsItem()
