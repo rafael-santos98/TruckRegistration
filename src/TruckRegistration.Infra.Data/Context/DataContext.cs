@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using NetDevPack.Messaging;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using TruckRegistration.Domain.Entities;
 using TruckRegistration.Infra.Data.Mappings;
@@ -9,6 +11,10 @@ namespace TruckRegistration.Infra.Data.Context
 {
     public sealed class DataContext : DbContext
     {
+        public DataContext()
+        {
+        }
+
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.TrackAll;
@@ -29,6 +35,19 @@ namespace TruckRegistration.Infra.Data.Context
             modelBuilder.ApplyConfiguration(new TruckMap());
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                IConfigurationRoot configuration = new ConfigurationBuilder()
+                   .SetBasePath(Directory.GetCurrentDirectory())
+                   .AddJsonFile("appsettings.json")
+                   .Build();
+                var connectionString = configuration.GetConnectionString("DefaultConnection");
+                optionsBuilder.UseSqlServer(connectionString);
+            }
         }
     }
 }
