@@ -9,7 +9,7 @@ using TruckRegistration.Application.Models.Response;
 using TruckRegistration.Services.Api.Controllers;
 
 namespace TruckRegistration.Services.Api.V1.Controllers
-{
+{    
     [ApiVersion("1.0")]
     [Route("truck-registration/v{version:apiVersion}/trucks")]
     [ApiController]
@@ -39,7 +39,7 @@ namespace TruckRegistration.Services.Api.V1.Controllers
         }
 
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(TruckResponse))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResponse))]
         [HttpPost]
         public IActionResult Post([FromBody] AddTruckRequest request)
         {
@@ -54,7 +54,7 @@ namespace TruckRegistration.Services.Api.V1.Controllers
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResponse))]
         [HttpPut("{id:guid}")]
         public IActionResult Put([FromRoute] Guid id, [FromBody] UpdateTruckRequest request)
         {
@@ -62,7 +62,7 @@ namespace TruckRegistration.Services.Api.V1.Controllers
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResponse))]
         [HttpDelete("{id:guid}")]
         public IActionResult Delete([FromRoute] Guid id)
         {

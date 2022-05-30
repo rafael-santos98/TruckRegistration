@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using TruckRegistration.Domain.Entities;
 
 namespace TruckRegistration.Application.Models.Response
@@ -12,11 +13,11 @@ namespace TruckRegistration.Application.Models.Response
             if (!baseResult.ValidationResult.IsValid)
             {
                 IsValid = false;
-                ValidationMessages = new List<string>();
+                Errors = new List<string>();
 
                 foreach (ValidationFailure failure in baseResult.ValidationResult.Errors)
                 {
-                    ValidationMessages.Add(failure.ErrorMessage);
+                    Errors.Add(failure.ErrorMessage);
                 }
             }
             else
@@ -35,9 +36,15 @@ namespace TruckRegistration.Application.Models.Response
             }
         }
 
-        public bool IsValid { get; set; }
-        public List<string> ValidationMessages { get; set; }
+        [JsonIgnore]
+        public bool IsValid { get; set; }       
+
+        [JsonIgnore]
         public object ObjectItem { get; set; }
+
+        [JsonIgnore]
         public Guid? Id { get; set; }
+
+        public List<string> Errors { get; set; }
     }
 }

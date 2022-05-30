@@ -25,7 +25,7 @@ namespace TruckRegistration.Services.Api.Controllers
 
         protected ActionResult CustomResponse(BaseResponse modelState)
         {
-            var errors = modelState?.ValidationMessages;
+            var errors = modelState?.Errors;
 
             if (errors != null)
             {
