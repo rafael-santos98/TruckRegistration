@@ -9,9 +9,8 @@ namespace TruckRegistration.Domain.Contracts.Repositories
     {
         Task<IEnumerable<Truck>> GetAll(bool asNoTracking = true);
         Task<Truck> GetById(Guid id, bool asNoTracking = true);
-        Truck Add(Truck truck);
-        void Update(Truck truck);
+        Task<Truck> SaveOrUpdate(Truck truck);
         void Remove(Truck truck);
-        void Commit();
+        Task Commit();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using TruckRegistration.Domain.Commands.Validations.Truck;
 using TruckRegistration.Domain.Contracts.Commands;
 using TruckRegistration.Domain.Contracts.Repositories;
@@ -15,7 +16,7 @@ namespace TruckRegistration.Domain.Commands
             this._truckRepository = truckRepository;
         }
 
-        public BaseResult Add(Truck truck)
+        public async Task<BaseResult> Add(Truck truck)
         {
             try
             {
@@ -25,9 +26,13 @@ namespace TruckRegistration.Domain.Commands
 
                 if (validationResult.IsValid)
                 {
-                    truck = _truckRepository.Add(truck);
-                    baseResult = new BaseResult(validationResult, id: truck.Id, objectItem: truck);
-                    _truckRepository.Commit();
+                    truck = await _truckRepository.SaveOrUpdate(truck);
+
+                    if (truck != null)
+                    {
+                        baseResult = new BaseResult(validationResult, id: truck.Id, objectItem: truck);
+                        await _truckRepository.Commit();
+                    }
                 }
 
                 return baseResult;
@@ -38,7 +43,7 @@ namespace TruckRegistration.Domain.Commands
             }
         }
 
-        public BaseResult Update(Truck truck)
+        public async Task<BaseResult> Update(Truck truck)
         {
             try
             {
@@ -46,8 +51,11 @@ namespace TruckRegistration.Domain.Commands
 
                 if (validationResult.IsValid)
                 {
-                    _truckRepository.Update(truck);
-                    _truckRepository.Commit();
+                    if (truck != null)
+                    {
+                        await _truckRepository.SaveOrUpdate(truck);
+                        await _truckRepository.Commit();
+                    }
                 }
 
                 return new BaseResult(validationResult);
@@ -58,7 +66,7 @@ namespace TruckRegistration.Domain.Commands
             }
         }
 
-        public BaseResult Delete(Guid id)
+        public async Task<BaseResult> Delete(Guid id)
         {
             try
             {
@@ -71,12 +79,12 @@ namespace TruckRegistration.Domain.Commands
 
                 if (validationResult.IsValid)
                 {
-                    truck = _truckRepository.GetById(id).GetAwaiter().GetResult();
+                    truck = await _truckRepository.GetById(id).ConfigureAwait(true);
 
                     if (truck != null)
                     {
                         _truckRepository.Remove(truck);
-                        _truckRepository.Commit();
+                        await _truckRepository.Commit();
                     }
                 }
 

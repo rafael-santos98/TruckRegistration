@@ -45,27 +45,28 @@ namespace TruckRegistration.Infra.Data.Respositories
                 .FirstOrDefaultAsync();
         }
 
-        public Truck Add(Truck truck)
+        public async Task<Truck> SaveOrUpdate(Truck truck)
         {
-            DbSet.Add(truck);
-            return truck;
-        }
+            if (await GetById(truck.Id) != null)
+            {
+                DbSet.Update(truck);
+            }
+            else
+            {
+                DbSet.Add(truck);
+            }
 
-        public void Update(Truck truck)
-        {
-            DbSet.Update(truck);
-            Commit();
+            return truck;
         }
 
         public void Remove(Truck truck)
         {
             DbSet.Remove(truck);
-            Commit();
         }
 
-        public void Commit()
+        public async Task Commit()
         {
-            Db.SaveChanges();
+            await Db.SaveChangesAsync();
         }
 
         public void Dispose()

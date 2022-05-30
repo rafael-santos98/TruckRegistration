@@ -27,7 +27,7 @@ namespace TruckRegistration.Services.Api.V1.Controllers
         [HttpGet]
         public async Task<IEnumerable<TruckResponse>> GeAll()
         {
-            return await _truckAppService.GetAll().ConfigureAwait(false);
+            return await _truckAppService.GetAll();
         }
 
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(TruckResponse))]
@@ -35,7 +35,7 @@ namespace TruckRegistration.Services.Api.V1.Controllers
         [HttpGet("{id:guid}")]
         public async Task<TruckResponse> GetById([FromRoute] Guid id)
         {
-            return await _truckAppService.GetById(id).ConfigureAwait(false);
+            return await _truckAppService.GetById(id);
         }
 
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(TruckResponse))]
@@ -43,7 +43,7 @@ namespace TruckRegistration.Services.Api.V1.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] AddTruckRequest request)
         {
-            var result = _truckAppService.Add(request);
+            var result = _truckAppService.Add(request).GetAwaiter().GetResult();
 
             if (!result.IsValid)
             {
@@ -58,7 +58,7 @@ namespace TruckRegistration.Services.Api.V1.Controllers
         [HttpPut("{id:guid}")]
         public IActionResult Put([FromRoute] Guid id, [FromBody] UpdateTruckRequest request)
         {
-            return CustomResponse(_truckAppService.Update(id, request));
+            return CustomResponse(_truckAppService.Update(id, request).GetAwaiter().GetResult());
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -66,7 +66,7 @@ namespace TruckRegistration.Services.Api.V1.Controllers
         [HttpDelete("{id:guid}")]
         public IActionResult Delete([FromRoute] Guid id)
         {
-            return CustomResponse(_truckAppService.Delete(id));
+            return CustomResponse(_truckAppService.Delete(id).GetAwaiter().GetResult());
         }
     }
 }

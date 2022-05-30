@@ -26,30 +26,30 @@ namespace TruckRegistration.Application.Services
 
         public async Task<IEnumerable<TruckResponse>> GetAll()
         {
-            return _mapper.Map<IEnumerable<TruckResponse>>(await _truckRepository.GetAll().ConfigureAwait(false));
+            return _mapper.Map<IEnumerable<TruckResponse>>(await _truckRepository.GetAll());
         }
 
         public async Task<TruckResponse> GetById(Guid id)
         {
-            return _mapper.Map<TruckResponse>(await _truckRepository.GetById(id).ConfigureAwait(false));
+            return _mapper.Map<TruckResponse>(await _truckRepository.GetById(id));
         }
 
-        public BaseResponse Add(AddTruckRequest truckRequest)
+        public async Task<BaseResponse> Add(AddTruckRequest truckRequest)
         {
-            return new BaseResponse(_truckCommandHandler.Add(_mapper.Map<Truck>(truckRequest)));
+            return new BaseResponse(await _truckCommandHandler.Add(_mapper.Map<Truck>(truckRequest)).ConfigureAwait(false));
         }
 
-        public BaseResponse Update(Guid id, UpdateTruckRequest truckRequest)
+        public async Task<BaseResponse> Update(Guid id, UpdateTruckRequest truckRequest)
         {
             var truck = _mapper.Map<Truck>(truckRequest);
             truck.Id = id;
 
-            return new BaseResponse(_truckCommandHandler.Update(truck));
+            return new BaseResponse(await _truckCommandHandler.Update(truck));
         }
 
-        public BaseResponse Delete(Guid id)
+        public async Task<BaseResponse> Delete(Guid id)
         {
-            return new BaseResponse(_truckCommandHandler.Delete(id));
+            return new BaseResponse(await _truckCommandHandler.Delete(id));
         }
     }
 }

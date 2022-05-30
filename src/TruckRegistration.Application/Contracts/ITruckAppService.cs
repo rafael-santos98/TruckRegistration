@@ -10,8 +10,8 @@ namespace TruckRegistration.Application.Contracts
     {
         Task<IEnumerable<TruckResponse>> GetAll();
         Task<TruckResponse> GetById(Guid id);
-        BaseResponse Add(AddTruckRequest truckRequest);
-        BaseResponse Update(Guid id, UpdateTruckRequest truckRequest);
-        BaseResponse Delete(Guid id);
+        Task<BaseResponse> Add(AddTruckRequest truckRequest);
+        Task<BaseResponse> Update(Guid id, UpdateTruckRequest truckRequest);
+        Task<BaseResponse> Delete(Guid id);
     }
 }
