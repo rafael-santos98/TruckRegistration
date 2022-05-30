@@ -11,27 +11,19 @@ namespace TruckRegistration.Domain.Commands.Validations.Truck
         {
             _truckRepository = truckRepository;
             ValidateId();
-            ValidateOrigem();
-            ValidateDestino();
-            ValidateValor();
-            ValidateExisteItem();
-            //ValidateExisteOutroItem();
+            ValidateIfExistsItem();
+            ValidateModel();
+            ValidateModelYear();
+            ValidateManufactureYear();           
         }
 
-        private void ValidateExisteItem()
+        private void ValidateIfExistsItem()
         {
-            RuleFor(x => x).Must(item => ExisteById(item.Id))
-                .WithMessage($"A rota informada não foi localizada.");
+            RuleFor(x => x).Must(item => ExistsById(item.Id))
+                .WithMessage($"The id provided was not found in the database.");
         }
 
-        private bool ExisteById(Guid id)
-        {
-            return _truckRepository.GetById(id)
-                .GetAwaiter()
-                .GetResult() != null;
-        }
-
-        private bool ExisteOutroItemByIdAndOrigemAndDestino(Guid id)
+        private bool ExistsById(Guid id)
         {
             return _truckRepository.GetById(id)
                 .GetAwaiter()

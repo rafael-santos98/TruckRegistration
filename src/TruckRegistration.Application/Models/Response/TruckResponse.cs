@@ -1,12 +1,13 @@
 ﻿using System;
+using TruckRegistration.Domain.Entities.Enums;
 
 namespace TruckRegistration.Application.Models.Response
 {
     public class TruckResponse
     {
         public Guid Id { get; set; }
-        public string Origem { get; set; }
-        public string Destino { get; set; }
-        public decimal Valor { get; set; }
+        public EModel? Model { get; set; }
+        public int? ManufactureYear { get; set; }
+        public int? ModelYear { get; set; }
     }
 }

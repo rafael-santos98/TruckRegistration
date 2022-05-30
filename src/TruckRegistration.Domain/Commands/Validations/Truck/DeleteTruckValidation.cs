@@ -10,21 +10,20 @@ namespace TruckRegistration.Domain.Commands.Validations.Truck
         public DeleteTruckValidation(ITruckRepository truckRepository)
         {
             _truckRepository = truckRepository;
-            ValidateExisteItem();
+            ValidateIfExistsItem();
         }
 
-        private void ValidateExisteItem()
+        private void ValidateIfExistsItem()
         {
-            RuleFor(x => x).Must(item => ExisteById(item.Id))
-                .WithMessage($"A rota informada não foi localizada.");
+            RuleFor(x => x).Must(item => ExistsById(item.Id))
+                .WithMessage($"The id provided was not found in the database.");
         }
 
-        private bool ExisteById(Guid id)
+        private bool ExistsById(Guid id)
         {
             return _truckRepository.GetById(id)
                 .GetAwaiter()
                 .GetResult() != null;
         }
-
     }
 }

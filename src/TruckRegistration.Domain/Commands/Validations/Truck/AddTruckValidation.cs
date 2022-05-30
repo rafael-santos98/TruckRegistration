@@ -4,10 +4,9 @@
     {
         public AddTruckValidation()
         {
-            ValidateOrigem();
-            ValidateDestino();
-            ValidateValor();
-            //ValidateExisteItem();
+            ValidateModel();
+            ValidateModelYear();
+            ValidateManufactureYear();
         }
     }
 }

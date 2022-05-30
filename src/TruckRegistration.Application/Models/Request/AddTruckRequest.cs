@@ -1,9 +1,11 @@
-﻿namespace TruckRegistration.Application.Models.Request
+﻿using TruckRegistration.Domain.Entities.Enums;
+
+namespace TruckRegistration.Application.Models.Request
 {
     public class AddTruckRequest
     {
-        public string Origem { get; set; }
-        public string Destino { get; set; }
-        public decimal Valor { get; set; }
+        public EModel? Model { get; set; }
+        public int? ManufactureYear { get; set; }
+        public int? ModelYear { get; set; }
     }
 }

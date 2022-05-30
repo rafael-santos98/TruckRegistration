@@ -11,36 +11,36 @@ namespace TruckRegistration.Domain.Commands.Validations.Truck
                 .NotEqual(Guid.Empty);
         }
 
-        protected void ValidateOrigem()
+        protected void ValidateModel()
         {
-            var fieldName = "origem";
+            var fieldName = "model";
 
-            RuleFor(c => c.Origem)
-                .NotEmpty().WithMessage(FieldIsRequired(fieldName))
-                .Length(3, 3).WithMessage($"É necessário o preenchimento do campo {fieldName} com três (03) caracteres");
+            RuleFor(c => c.Model)
+                .NotEmpty()
+                .WithMessage(FieldIsRequired(fieldName));
         }
 
-        protected void ValidateDestino()
+        protected void ValidateModelYear()
         {
-            var fieldName = "destino";
+            var fieldName = "model year";
 
-            RuleFor(c => c.Destino)
+            RuleFor(c => c.ModelYear)
                 .NotEmpty().WithMessage(FieldIsRequired(fieldName))
-                .Length(3, 3).WithMessage($"É necessário o preenchimento do campo {fieldName} com três (03) caracteres");
+                .GreaterThan(0).WithMessage($"The field is greater than zero (0) for the field {fieldName}.");
         }
 
-        protected void ValidateValor()
+        protected void ValidateManufactureYear()
         {
-            var fieldName = "valor";
+            var fieldName = "manufacture year";
 
-            RuleFor(c => c.Valor)
+            RuleFor(c => c.ManufactureYear)
                 .NotEmpty().WithMessage(FieldIsRequired(fieldName))
-                .GreaterThanOrEqualTo(0).WithMessage($"É necessário informar um valor maior que zero (0) para o campo {fieldName}.");
+                .GreaterThan(0).WithMessage($"The field is greater than zero (0) for the field {fieldName}.");
         }
 
         private string FieldIsRequired(string fieldName)
         {
-            return $"Campo {fieldName} é requerido.";
+            return $"The field {fieldName} is required.";
         }
     }
 }

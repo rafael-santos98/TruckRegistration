@@ -14,18 +14,18 @@ namespace TruckRegistration.Infra.Data.Mappings
                .HasColumnName("Id")
                .HasDefaultValueSql("NEWID()");
 
-            builder.Property(c => c.Origem)
-                .HasColumnType("varchar(3)")
+            builder.Property(c => c.Model)
+                .HasColumnType("varchar(2)")
                 .HasMaxLength(3)
                 .IsRequired();
 
-            builder.Property(c => c.Destino)
-                .HasColumnType("varchar(3)")
+            builder.Property(c => c.ModelYear)
+                .HasColumnType("int")
                 .HasMaxLength(3)
                 .IsRequired();
 
-            builder.Property(c => c.Valor)
-                .HasColumnType("decimal(5,2)")
+            builder.Property(c => c.ManufactureYear)
+                .HasColumnType("int")
                 .IsRequired();
         }
     }
