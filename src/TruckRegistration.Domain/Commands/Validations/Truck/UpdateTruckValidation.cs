@@ -22,7 +22,7 @@ namespace TruckRegistration.Domain.Commands.Validations.Truck
 
         private void ValidateIfExistsItem()
         {
-            RuleFor(x => x).Must(item => ExistsById(item.Id));                
+            RuleFor(x => x).Must(item => ExistsById(item.Id));
         }
 
         private bool ExistsById(Guid id)
