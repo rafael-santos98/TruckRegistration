@@ -28,9 +28,12 @@ namespace TruckRegistration.Domain.Commands
                 {
                     truck = await _truckRepository.SaveOrUpdate(truck);
 
-                    if (truck != null)
+                    if (truck.Id != null)
                     {
-                        baseResult = new BaseResult(validationResult, id: truck.Id, objectItem: truck);
+                        baseResult = new BaseResult(validationResult, 
+                            id: truck.Id, 
+                            objectItem: truck);
+
                         await _truckRepository.Commit();
                     }
                 }
