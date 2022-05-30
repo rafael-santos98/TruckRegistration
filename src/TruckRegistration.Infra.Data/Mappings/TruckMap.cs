@@ -45,7 +45,7 @@ namespace TruckRegistration.Infra.Data.Mappings
 
             builder.Property(c => c.Color)
                 .HasColumnType("varchar(30)")
-                .HasMaxLength(50)
+                .HasMaxLength(30)
                 .IsRequired();
         }
     }

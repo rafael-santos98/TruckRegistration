@@ -22,8 +22,7 @@ namespace TruckRegistration.Domain.Commands.Validations.Truck
 
         private void ValidateIfExistsItem()
         {
-            RuleFor(x => x).Must(item => ExistsById(item.Id))
-                .WithMessage($"The id provided was not found in the database.");
+            RuleFor(x => x).Must(item => ExistsById(item.Id));                
         }
 
         private bool ExistsById(Guid id)

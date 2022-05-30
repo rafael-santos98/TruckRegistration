@@ -30,8 +30,8 @@ namespace TruckRegistration.Domain.Commands
 
                     if (truck.Id != null)
                     {
-                        baseResult = new BaseResult(validationResult, 
-                            id: truck.Id, 
+                        baseResult = new BaseResult(validationResult,
+                            id: truck.Id,
                             objectItem: truck);
 
                         await _truckRepository.Commit();
@@ -58,8 +58,8 @@ namespace TruckRegistration.Domain.Commands
 
                     if (truckToUpdate != null)
                     {
-                        truckToUpdate = new Truck(truck.Description, 
-                            truck.Model, 
+                        truckToUpdate = new Truck(truck.Description,
+                            truck.Model,
                             truck.ManufactureYear,
                             truck.ModelYear,
                             truck.Renavam,

@@ -14,7 +14,7 @@ namespace TruckRegistration.Domain.Entities
             this.Description = description;
             this.Model = model;
             this.ManufactureYear = manufactureYear;
-            this.ModelYear = modelYear; 
+            this.ModelYear = modelYear;
             this.Renavam = renavam;
             this.Color = color;
         }

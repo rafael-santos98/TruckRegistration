@@ -7,70 +7,37 @@ namespace TruckRegistration.Domain.Commands.Validations.Truck
     {
         protected void ValidateId()
         {
-            RuleFor(c => c.Id)
-                .NotEqual(Guid.Empty);
+            RuleFor(c => c.Id).NotEqual(Guid.Empty);
         }
 
         protected void ValidateDescription()
         {
-            var fieldName = "description";
-
-            RuleFor(c => c.Description)
-                .NotEmpty()
-                .WithMessage(FieldIsRequired(fieldName))
-                .MaximumLength(100);
+            RuleFor(c => c.Description).NotEmpty().MaximumLength(100);
         }
 
         protected void ValidateModel()
         {
-            var fieldName = "model";
-
-            RuleFor(c => c.Model)
-                .NotEmpty()
-                .WithMessage(FieldIsRequired(fieldName));
+            RuleFor(c => c.Model).NotEmpty();
         }
 
         protected void ValidateManufactureYear()
         {
-            var fieldName = "manufacture year";
-
-            RuleFor(c => c.ManufactureYear)
-                .NotEmpty().WithMessage(FieldIsRequired(fieldName))
-                .GreaterThan(0).WithMessage($"The field is greater than zero (0) for the field {fieldName}.");
+            RuleFor(c => c.ManufactureYear).NotEmpty().GreaterThan(0);
         }
 
         protected void ValidateModelYear()
         {
-            var fieldName = "model year";
-
-            RuleFor(c => c.ModelYear)
-                .NotEmpty().WithMessage(FieldIsRequired(fieldName))
-                .GreaterThan(0).WithMessage($"The field is greater than zero (0) for the field {fieldName}.");
+            RuleFor(c => c.ModelYear).NotEmpty().GreaterThan(0);
         }
-    
+
         protected void ValidateRenavam()
         {
-            var fieldName = "renavam";
-
-            RuleFor(c => c.Renavam)
-                .NotEmpty()
-                .WithMessage(FieldIsRequired(fieldName))
-                .MaximumLength(30);
+            RuleFor(c => c.Renavam).NotEmpty().MaximumLength(30);
         }
 
         protected void ValidateColor()
         {
-            var fieldName = "color";
-
-            RuleFor(c => c.Color)
-                .NotEmpty()
-                .WithMessage(FieldIsRequired(fieldName))
-                .MaximumLength(30);
-        }
-
-        private string FieldIsRequired(string fieldName)
-        {
-            return $"The field {fieldName} is required.";
+            RuleFor(c => c.Color).NotEmpty().MaximumLength(30);
         }
     }
 }
