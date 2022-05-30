@@ -22,7 +22,7 @@ namespace TruckRegistration.Domain.Commands.Validations.Truck
 
         protected void ValidateManufactureYear()
         {
-            RuleFor(c => c.ManufactureYear).NotEmpty().Equal(DateTime.Now.Year);
+            RuleFor(c => c.ManufactureYear).NotEmpty().Equals(DateTime.Now.Year);
         }
 
         protected void ValidateModelYear()
