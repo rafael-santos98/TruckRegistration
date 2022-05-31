@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentAssertions;
 using Moq;
+using Moq.AutoMock;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TruckRegistration.Application.Models.Response;
@@ -31,20 +32,38 @@ namespace TruckRegistration.Tests.UnitTests.Application
                 _truckRepositoryMock.Object);
         }
 
-        [Fact(DisplayName = "Get All Trucks with items")]
-        public async Task GetAll_Test_With_Items()
+        [Fact(DisplayName = "Get All Trucks contains items")]
+        public async Task GetAll_Test_Contais_Items()
         {
             // Arrange
+            _truckRepositoryMock.Setup(m => m.GetAll(It.IsAny<bool>()))
+                .ReturnsAsync(TruckEntityMock.GetTruckList);
+
             _mapperMock.Setup(m => m.Map<IEnumerable<TruckResponse>>(It.IsAny<List<Truck>>()))
                 .Returns(TruckEntityMock.GetTruckResponseList);
-
-            _truckRepositoryMock.Setup(m => m.GetAll(false)).ReturnsAsync(TruckEntityMock.GetTruckList);
 
             // Act
             var result = await _truckAppService.GetAll();
 
             // Assert
             result.Should().NotBeNullOrEmpty();
+        }
+
+        [Fact(DisplayName = "Get All Trucks not contains items")]
+        public async Task GetAll_Test_NotContais_Items()
+        {
+            // Arrange
+            _truckRepositoryMock.Setup(m => m.GetAll(It.IsAny<bool>()))
+                .ReturnsAsync(It.IsAny<List<Truck>>());
+
+            _mapperMock.Setup(m => m.Map<IEnumerable<TruckResponse>>(It.IsAny<List<Truck>>()))
+                .Returns(It.IsAny<List<TruckResponse>>());
+
+            // Act
+            var result = await _truckAppService.GetAll();
+
+            // Assert
+            result.Should().BeNullOrEmpty();
         }
     }
 }
