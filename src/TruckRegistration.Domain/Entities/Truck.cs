@@ -1,4 +1,5 @@
-﻿using TruckRegistration.Domain.Entities.Enums;
+﻿using System;
+using TruckRegistration.Domain.Entities.Enums;
 
 namespace TruckRegistration.Domain.Entities
 {
@@ -7,6 +8,17 @@ namespace TruckRegistration.Domain.Entities
         public Truck()
         {
 
+        }
+
+        public Truck(Guid id, string description, EModel? model, int? manufactureYear, int? modelYear, string renavam, string color)
+        {
+            this.Id = id;
+            this.Description = description;
+            this.Model = model;
+            this.ManufactureYear = manufactureYear;
+            this.ModelYear = modelYear;
+            this.Renavam = renavam;
+            this.Color = color;
         }
 
         public Truck(string description, EModel? model, int? manufactureYear, int? modelYear, string renavam, string color)

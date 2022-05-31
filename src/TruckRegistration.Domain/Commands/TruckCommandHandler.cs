@@ -58,7 +58,8 @@ namespace TruckRegistration.Domain.Commands
 
                     if (truckToUpdate != null)
                     {
-                        truckToUpdate = new Truck(truck.Description,
+                        truckToUpdate = new Truck(truck.Id,
+                            truck.Description,
                             truck.Model,
                             truck.ManufactureYear,
                             truck.ModelYear,
