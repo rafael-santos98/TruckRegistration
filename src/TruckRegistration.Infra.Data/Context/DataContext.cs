@@ -50,8 +50,13 @@ namespace TruckRegistration.Infra.Data.Context
 
                 if (!inMemoryDatabase)
                 {
-                    var connectionString = configuration.GetConnectionString("DefaultConnection");
-                    optionsBuilder.UseSqlServer(connectionString);
+                    optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                    optionsBuilder.EnableSensitiveDataLogging();
+                }
+                else
+                {
+                    optionsBuilder.UseInMemoryDatabase("InMemoryDatabase");
+                    optionsBuilder.EnableSensitiveDataLogging();
                 }
             }
         }
