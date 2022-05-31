@@ -33,7 +33,7 @@ namespace TruckRegistration.Tests.UnitTests.Application
         }
 
         [Fact(DisplayName = "Get All Trucks contains items")]
-        public async Task GetAll_Test_Contais_Items()
+        public async Task GetAll_Test_Contains_Items()
         {
             // Arrange
             _truckRepositoryMock.Setup(m => m.GetAll(It.IsAny<bool>()))
@@ -50,7 +50,7 @@ namespace TruckRegistration.Tests.UnitTests.Application
         }
 
         [Fact(DisplayName = "Get All Trucks not contains items")]
-        public async Task GetAll_Test_NotContais_Items()
+        public async Task GetAll_Test_NotContains_Items()
         {
             // Arrange
             _truckRepositoryMock.Setup(m => m.GetAll(It.IsAny<bool>()))
@@ -64,6 +64,40 @@ namespace TruckRegistration.Tests.UnitTests.Application
 
             // Assert
             result.Should().BeNullOrEmpty();
+        }
+
+        [Fact(DisplayName = "Get By Id Trucks contains item")]
+        public async Task GetById_Test_Contains_Item()
+        {
+            // Arrange
+            _truckRepositoryMock.Setup(m => m.GetById(It.IsAny<System.Guid>(), It.IsAny<bool>()))
+                .ReturnsAsync(TruckEntityMock.GetTruck);
+
+            _mapperMock.Setup(m => m.Map<TruckResponse>(It.IsAny<Truck>()))
+                .Returns(TruckEntityMock.GetTruckResponse);
+
+            // Act
+            var result = await _truckAppService.GetById(It.IsAny<System.Guid>());
+
+            // Assert
+            result.Should().NotBeNull();
+        }
+
+        [Fact(DisplayName = "Get By Id Trucks not contains item")]
+        public async Task GetById_Test_Not_Contains_Item()
+        {
+            // Arrange
+            _truckRepositoryMock.Setup(m => m.GetById(It.IsAny<System.Guid>(), It.IsAny<bool>()))
+                .ReturnsAsync(It.IsAny<Truck>);
+
+            _mapperMock.Setup(m => m.Map<TruckResponse>(It.IsAny<Truck>()))
+                .Returns(It.IsAny<TruckResponse>);
+
+            // Act
+            var result = await _truckAppService.GetById(It.IsAny<System.Guid>());
+
+            // Assert
+            result.Should().BeNull();
         }
     }
 }
