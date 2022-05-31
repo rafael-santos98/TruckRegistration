@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using TruckRegistration.Infra.Data.Context;
@@ -12,6 +13,16 @@ namespace TruckRegistration.Services.Api.Configurations
             if (services == null) throw new ArgumentNullException(nameof(services));
 
             services.AddDbContext<DataContext>();
+        }
+
+        public static void UseAutoMigration(DataContext dataContext, IConfiguration configuration)
+        {
+            var inMemoryDatabase = bool.Parse(configuration.GetSection("InMemoryDatabase").Value);
+
+            if (!inMemoryDatabase)
+            {
+                dataContext.Database.Migrate();
+            }
         }
     }
 }
