@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TruckRegistration.Application.Models.Request;
 using TruckRegistration.Application.Models.Response;
 using TruckRegistration.Domain.Entities;
 
@@ -61,6 +62,35 @@ namespace TruckRegistration.Tests.Entities
                     Id = withGuidId ? System.Guid.NewGuid() : new System.Guid(),
                     Description = "",
                     Model = Domain.Entities.Enums.EModel.FM,
+                    ManufactureYear = 2022,
+                    ModelYear = 2023,
+                    Renavam = "22709827033",
+                    Color = "White"
+                }
+            };
+        }
+
+        public static AddTruckRequest GetAddTruckRequest()
+        {
+            return GetAddTruckRequestList().FirstOrDefault();
+        }
+
+        public static List<AddTruckRequest> GetAddTruckRequestList()
+        {
+            return new List<AddTruckRequest>{
+                new AddTruckRequest()
+                {
+                    Description = "Volvo FM",
+                    Model = Domain.Entities.Enums.EModel.FM,
+                    ManufactureYear = 2022,
+                    ModelYear = 2023,
+                    Renavam = "30808965591",
+                    Color = "Color"
+                },
+                new AddTruckRequest()
+                {
+                    Description = "Volvo FH",
+                    Model = Domain.Entities.Enums.EModel.FH,
                     ManufactureYear = 2022,
                     ModelYear = 2023,
                     Renavam = "22709827033",
