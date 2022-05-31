@@ -18,7 +18,7 @@ namespace TruckRegistration.Tests.Entities
                 new Truck()
                 {
                     Id = new System.Guid(),
-                    Description = "",
+                    Description = "Volvo FM",
                     Model = Domain.Entities.Enums.EModel.FM,
                     ManufactureYear = 2022,
                     ModelYear = 2023,
@@ -28,8 +28,8 @@ namespace TruckRegistration.Tests.Entities
                 new Truck()
                 {
                     Id = new System.Guid(),
-                    Description = "",
-                    Model = Domain.Entities.Enums.EModel.FM,
+                    Description = "Volvo FH",
+                    Model = Domain.Entities.Enums.EModel.FH,
                     ManufactureYear = 2022,
                     ModelYear = 2023,
                     Renavam = "22709827033",

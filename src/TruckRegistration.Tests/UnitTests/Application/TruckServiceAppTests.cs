@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using FluentAssertions;
 using Moq;
-using Moq.AutoMock;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TruckRegistration.Application.Models.Response;
