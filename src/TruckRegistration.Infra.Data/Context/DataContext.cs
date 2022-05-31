@@ -45,8 +45,14 @@ namespace TruckRegistration.Infra.Data.Context
                    .SetBasePath(Directory.GetCurrentDirectory())
                    .AddJsonFile("appsettings.json")
                    .Build();
-                var connectionString = configuration.GetConnectionString("DefaultConnection");
-                optionsBuilder.UseSqlServer(connectionString);
+
+                var inMemoryDatabase = bool.Parse(configuration.GetSection("InMemoryDatabase").Value);
+
+                if (!inMemoryDatabase)
+                {
+                    var connectionString = configuration.GetConnectionString("DefaultConnection");
+                    optionsBuilder.UseSqlServer(connectionString);
+                }
             }
         }
     }
