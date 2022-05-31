@@ -2,6 +2,7 @@
 using FluentAssertions;
 using System.Threading.Tasks;
 using TruckRegistration.Application.AutoMapper;
+using TruckRegistration.Application.Models.Response;
 using TruckRegistration.Domain.Entities;
 using TruckRegistration.Tests.Entities;
 using Xunit;
@@ -61,6 +62,26 @@ namespace TruckRegistration.Tests.UnitTests.Application.AutoMapper
             result.ModelYear.Should().Be(request.ModelYear);
             result.Renavam.Should().Be(request.Renavam);
             result.Color.Should().Be(request.Color);
+        }
+
+        [Fact(DisplayName = "Validate Map Truck To TruckResponse Test is valid")]
+        public async Task Validate_Map_TruckToTruckResponse_Test_Is_Valid()
+        {
+            // Arrange
+            var model = TruckEntityMock.GetTruck();
+
+            // Act
+            var result = _mapper.Map<TruckResponse>(model);
+
+            // Assert
+            result.Should().NotBeNull();
+            result.Id.Should().Be(model.Id);
+            result.Description.Should().Be(model.Description);
+            result.Model.Should().Be(model.Model);
+            result.ManufactureYear.Should().Be(model.ManufactureYear);
+            result.ModelYear.Should().Be(model.ModelYear);
+            result.Renavam.Should().Be(model.Renavam);
+            result.Color.Should().Be(model.Color);
         }
     }
 }
