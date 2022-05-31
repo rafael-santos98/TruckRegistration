@@ -98,5 +98,34 @@ namespace TruckRegistration.Tests.Entities
                 }
             };
         }
+
+        public static AddTruckRequest GetUpdateTruckRequest(bool withGuidId = true)
+        {
+            return GetUpdateRequestList(withGuidId).FirstOrDefault();
+        }
+
+        public static List<AddTruckRequest> GetUpdateRequestList(bool withGuidId = true)
+        {
+            return new List<AddTruckRequest>{
+                new AddTruckRequest()
+                {
+                    Description = "Volvo FM",
+                    Model = Domain.Entities.Enums.EModel.FM,
+                    ManufactureYear = 2022,
+                    ModelYear = 2023,
+                    Renavam = "30808965591",
+                    Color = "Color"
+                },
+                new AddTruckRequest()
+                {
+                    Description = "Volvo FH",
+                    Model = Domain.Entities.Enums.EModel.FH,
+                    ManufactureYear = 2022,
+                    ModelYear = 2023,
+                    Renavam = "22709827033",
+                    Color = "White"
+                }
+            };
+        }
     }
 }

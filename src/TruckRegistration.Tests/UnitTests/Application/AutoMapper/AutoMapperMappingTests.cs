@@ -27,20 +27,40 @@ namespace TruckRegistration.Tests.UnitTests.Application.AutoMapper
         public async Task Validate_Map_AddTruckRequestToTruck_Test_Is_Valid()
         {
             // Arrange
-            var truckRequest = TruckEntityMock.GetAddTruckRequest();
+            var request = TruckEntityMock.GetAddTruckRequest();
 
             // Act
-            var result = _mapper.Map<Truck>(truckRequest);
+            var result = _mapper.Map<Truck>(request);
 
             // Assert
             result.Should().NotBeNull();
             result.Id.Should().Be(new System.Guid());
-            result.Description.Should().Be(truckRequest.Description);
-            result.Model.Should().Be(truckRequest.Model);
-            result.ManufactureYear.Should().Be(truckRequest.ManufactureYear);
-            result.ModelYear.Should().Be(truckRequest.ModelYear);
-            result.Renavam.Should().Be(truckRequest.Renavam);
-            result.Color.Should().Be(truckRequest.Color);
+            result.Description.Should().Be(request.Description);
+            result.Model.Should().Be(request.Model);
+            result.ManufactureYear.Should().Be(request.ManufactureYear);
+            result.ModelYear.Should().Be(request.ModelYear);
+            result.Renavam.Should().Be(request.Renavam);
+            result.Color.Should().Be(request.Color);
+        }
+
+        [Fact(DisplayName = "Validate Map UpdateTruckRequest To Truck Test is valid")]
+        public async Task Validate_Map_UpdateTruckRequestToTruck_Test_Is_Valid()
+        {
+            // Arrange
+            var request = TruckEntityMock.GetUpdateTruckRequest();
+
+            // Act
+            var result = _mapper.Map<Truck>(request);
+
+            // Assert
+            result.Should().NotBeNull();
+            result.Id.Should().Be(new System.Guid());
+            result.Description.Should().Be(request.Description);
+            result.Model.Should().Be(request.Model);
+            result.ManufactureYear.Should().Be(request.ManufactureYear);
+            result.ModelYear.Should().Be(request.ModelYear);
+            result.Renavam.Should().Be(request.Renavam);
+            result.Color.Should().Be(request.Color);
         }
     }
 }
