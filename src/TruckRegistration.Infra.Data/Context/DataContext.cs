@@ -41,24 +41,32 @@ namespace TruckRegistration.Infra.Data.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                IConfigurationRoot configuration = new ConfigurationBuilder()
-                   .SetBasePath(Directory.GetCurrentDirectory())
-                   .AddJsonFile("appsettings.json")
-                   .Build();
+                IConfigurationRoot configuration = GetConfigurationRootDataBase();
 
-                var inMemoryDatabase = bool.Parse(configuration.GetSection("InMemoryDatabase").Value);
-
-                if (!inMemoryDatabase)
+                if (IsInMemoryDatabase(configuration))
                 {
-                    optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-                    optionsBuilder.EnableSensitiveDataLogging();
+                    optionsBuilder.UseInMemoryDatabase("InMemoryDatabase");
                 }
                 else
                 {
-                    optionsBuilder.UseInMemoryDatabase("InMemoryDatabase");
-                    optionsBuilder.EnableSensitiveDataLogging();
+                    optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
                 }
+
+                optionsBuilder.EnableSensitiveDataLogging();
             }
+        }
+
+        private IConfigurationRoot GetConfigurationRootDataBase()
+        {
+            return new ConfigurationBuilder()
+               .SetBasePath(Directory.GetCurrentDirectory())
+               .AddJsonFile("appsettings.json")
+               .Build();
+        }
+
+        private bool IsInMemoryDatabase(IConfigurationRoot configurationRoot)
+        {
+            return bool.Parse(configurationRoot.GetSection("InMemoryDatabase").Value);
         }
     }
 }
