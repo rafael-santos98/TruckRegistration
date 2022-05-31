@@ -2,7 +2,6 @@
 using Moq;
 using System.Threading.Tasks;
 using TruckRegistration.Domain.Commands;
-using TruckRegistration.Domain.Contracts.Commands;
 using TruckRegistration.Domain.Contracts.Repositories;
 using TruckRegistration.Domain.Entities;
 using TruckRegistration.Tests.Entities;
@@ -35,6 +34,8 @@ namespace TruckRegistration.Tests.UnitTests.Domain
 
             // Assert
             result.ValidationResult.IsValid.Should().BeTrue();
+            _truckRepositoryMock.Verify(m => m.SaveOrUpdate(It.IsAny<Truck>()), Times.Once);
+            _truckRepositoryMock.Verify(m => m.Commit(), Times.Once);
         }
 
         [Fact(DisplayName = "Add Truck with errors")]
@@ -50,6 +51,8 @@ namespace TruckRegistration.Tests.UnitTests.Domain
             // Assert
             result.ValidationResult.IsValid.Should().BeFalse();
             result.ValidationResult.Errors.Count.Should().BeGreaterThan(0);
+            _truckRepositoryMock.Verify(m => m.SaveOrUpdate(It.IsAny<Truck>()), Times.Never);
+            _truckRepositoryMock.Verify(m => m.Commit(), Times.Never);
         }
 
         [Fact(DisplayName = "Update Truck with success")]
@@ -69,6 +72,9 @@ namespace TruckRegistration.Tests.UnitTests.Domain
 
             // Assert
             result.ValidationResult.IsValid.Should().BeTrue();
+            _truckRepositoryMock.Verify(m => m.GetById(It.IsAny<System.Guid>(), It.IsAny<bool>()), Times.Exactly(2));
+            _truckRepositoryMock.Verify(m => m.SaveOrUpdate(It.IsAny<Truck>()), Times.Once);
+            _truckRepositoryMock.Verify(m => m.Commit(), Times.Once);
         }
 
         [Fact(DisplayName = "Update Truck with errors")]
@@ -79,11 +85,14 @@ namespace TruckRegistration.Tests.UnitTests.Domain
                 .ReturnsAsync(It.IsAny<Truck>());
 
             // Act
-            var result = await _truckCommandHandler.Add(new Truck());
+            var result = await _truckCommandHandler.Update(new Truck());
 
             // Assert
             result.ValidationResult.IsValid.Should().BeFalse();
             result.ValidationResult.Errors.Count.Should().BeGreaterThan(0);
+            _truckRepositoryMock.Verify(m => m.GetById(It.IsAny<System.Guid>(), It.IsAny<bool>()), Times.Once);
+            _truckRepositoryMock.Verify(m => m.SaveOrUpdate(It.IsAny<Truck>()), Times.Never);
+            _truckRepositoryMock.Verify(m => m.Commit(), Times.Never);
         }
 
         [Fact(DisplayName = "Delete Truck with success")]
@@ -103,6 +112,9 @@ namespace TruckRegistration.Tests.UnitTests.Domain
 
             // Assert
             result.ValidationResult.IsValid.Should().BeTrue();
+            _truckRepositoryMock.Verify(m => m.GetById(It.IsAny<System.Guid>(), It.IsAny<bool>()), Times.Once);
+            _truckRepositoryMock.Verify(m => m.Remove(It.IsAny<System.Guid>()), Times.Once);
+            _truckRepositoryMock.Verify(m => m.Commit(), Times.Once);
         }
 
         [Fact(DisplayName = "Delete Truck with errors")]
@@ -118,6 +130,9 @@ namespace TruckRegistration.Tests.UnitTests.Domain
             // Assert
             result.ValidationResult.IsValid.Should().BeFalse();
             result.ValidationResult.Errors.Count.Should().BeGreaterThan(0);
+            _truckRepositoryMock.Verify(m => m.GetById(It.IsAny<System.Guid>(), It.IsAny<bool>()), Times.Once);
+            _truckRepositoryMock.Verify(m => m.Remove(It.IsAny<System.Guid>()), Times.Never);
+            _truckRepositoryMock.Verify(m => m.Commit(), Times.Never);
         }
     }
 }
