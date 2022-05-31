@@ -26,12 +26,12 @@ namespace TruckRegistration.Tests.UnitTests.Domain
         {
             // Arrange
             _truckRepositoryMock.Setup(m => m.SaveOrUpdate(It.IsAny<Truck>()))
-                .ReturnsAsync(TruckEntityMock.GetTruck);
+                .ReturnsAsync(TruckEntityMock.GetTruck(withGuidId: false));
 
             _truckRepositoryMock.Setup(m => m.Commit());
 
             // Act
-            var result = await _truckCommandHandler.Add(TruckEntityMock.GetTruck());
+            var result = await _truckCommandHandler.Add(TruckEntityMock.GetTruck(withGuidId: false));
 
             // Assert
             result.ValidationResult.IsValid.Should().BeTrue();
@@ -39,6 +39,40 @@ namespace TruckRegistration.Tests.UnitTests.Domain
 
         [Fact(DisplayName = "Add Truck with errors")]
         public async Task Add_Truck_Test_With_Errors()
+        {
+            // Arrange
+            _truckRepositoryMock.Setup(m => m.SaveOrUpdate(It.IsAny<Truck>()))
+                .ReturnsAsync(It.IsAny<Truck>());
+
+            // Act
+            var result = await _truckCommandHandler.Add(new Truck());
+
+            // Assert
+            result.ValidationResult.IsValid.Should().BeFalse();
+            result.ValidationResult.Errors.Count.Should().BeGreaterThan(0);
+        }
+
+        [Fact(DisplayName = "Update Truck with success")]
+        public async Task Update_Truck_Test_With_Success()
+        {
+            // Arrange
+            _truckRepositoryMock.Setup(m => m.GetById(It.IsAny<System.Guid>(), It.IsAny<bool>()))
+                .ReturnsAsync(TruckEntityMock.GetTruck());
+
+            _truckRepositoryMock.Setup(m => m.SaveOrUpdate(It.IsAny<Truck>()))
+                .ReturnsAsync(TruckEntityMock.GetTruck());
+
+            _truckRepositoryMock.Setup(m => m.Commit());
+
+            // Act
+            var result = await _truckCommandHandler.Update(TruckEntityMock.GetTruck());
+
+            // Assert
+            result.ValidationResult.IsValid.Should().BeTrue();
+        }
+
+        [Fact(DisplayName = "Update Truck with errors")]
+        public async Task Update_Truck_Test_With_Errors()
         {
             // Arrange
             _truckRepositoryMock.Setup(m => m.SaveOrUpdate(It.IsAny<Truck>()))

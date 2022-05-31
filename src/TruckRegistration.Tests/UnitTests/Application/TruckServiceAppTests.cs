@@ -36,10 +36,10 @@ namespace TruckRegistration.Tests.UnitTests.Application
         {
             // Arrange
             _truckRepositoryMock.Setup(m => m.GetAll(It.IsAny<bool>()))
-                .ReturnsAsync(TruckEntityMock.GetTruckList);
+                .ReturnsAsync(TruckEntityMock.GetTruckList());
 
             _mapperMock.Setup(m => m.Map<IEnumerable<TruckResponse>>(It.IsAny<List<Truck>>()))
-                .Returns(TruckEntityMock.GetTruckResponseList);
+                .Returns(TruckEntityMock.GetTruckResponseList());
 
             // Act
             var result = await _truckAppService.GetAll();
@@ -70,10 +70,10 @@ namespace TruckRegistration.Tests.UnitTests.Application
         {
             // Arrange
             _truckRepositoryMock.Setup(m => m.GetById(It.IsAny<System.Guid>(), It.IsAny<bool>()))
-                .ReturnsAsync(TruckEntityMock.GetTruck);
+                .ReturnsAsync(TruckEntityMock.GetTruck());
 
             _mapperMock.Setup(m => m.Map<TruckResponse>(It.IsAny<Truck>()))
-                .Returns(TruckEntityMock.GetTruckResponse);
+                .Returns(TruckEntityMock.GetTruckResponse());
 
             // Act
             var result = await _truckAppService.GetById(It.IsAny<System.Guid>());

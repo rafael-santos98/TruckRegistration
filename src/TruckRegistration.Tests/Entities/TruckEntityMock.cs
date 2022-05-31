@@ -7,17 +7,17 @@ namespace TruckRegistration.Tests.Entities
 {
     public static class TruckEntityMock
     {
-        public static Truck GetTruck()
+        public static Truck GetTruck(bool withGuidId = true)
         {
-            return GetTruckList().FirstOrDefault();
+            return GetTruckList(withGuidId).FirstOrDefault();
         }
 
-        public static List<Truck> GetTruckList()
+        public static List<Truck> GetTruckList(bool withGuidId = true)
         {
             return new List<Truck>{
                 new Truck()
                 {
-                    Id = new System.Guid(),
+                    Id = withGuidId ? System.Guid.NewGuid() : new System.Guid(),
                     Description = "Volvo FM",
                     Model = Domain.Entities.Enums.EModel.FM,
                     ManufactureYear = 2022,
@@ -27,7 +27,7 @@ namespace TruckRegistration.Tests.Entities
                 },
                 new Truck()
                 {
-                    Id = new System.Guid(),
+                    Id = withGuidId ? System.Guid.NewGuid() : new System.Guid(),
                     Description = "Volvo FH",
                     Model = Domain.Entities.Enums.EModel.FH,
                     ManufactureYear = 2022,
@@ -38,17 +38,17 @@ namespace TruckRegistration.Tests.Entities
             };
         }
 
-        public static TruckResponse GetTruckResponse()
+        public static TruckResponse GetTruckResponse(bool withGuidId = true)
         {
-            return GetTruckResponseList().FirstOrDefault();
+            return GetTruckResponseList(withGuidId).FirstOrDefault();
         }
 
-        public static List<TruckResponse> GetTruckResponseList()
+        public static List<TruckResponse> GetTruckResponseList(bool withGuidId = true)
         {
             return new List<TruckResponse>{
                 new TruckResponse()
                 {
-                    Id = new System.Guid(),
+                    Id = withGuidId ? System.Guid.NewGuid() : new System.Guid(),
                     Description = "",
                     Model = Domain.Entities.Enums.EModel.FM,
                     ManufactureYear = 2022,
@@ -58,7 +58,7 @@ namespace TruckRegistration.Tests.Entities
                 },
                 new TruckResponse()
                 {
-                    Id = new System.Guid(),
+                    Id = withGuidId ? System.Guid.NewGuid() : new System.Guid(),
                     Description = "",
                     Model = Domain.Entities.Enums.EModel.FM,
                     ManufactureYear = 2022,

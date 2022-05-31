@@ -4,6 +4,7 @@
     {
         public AddTruckValidation()
         {
+            ValidateId(isEmpty: true);
             ValidateDescription();
             ValidateModel();
             ValidateManufactureYear();

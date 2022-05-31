@@ -5,9 +5,16 @@ namespace TruckRegistration.Domain.Commands.Validations.Truck
 {
     public abstract class TruckValidation<T> : AbstractValidator<T> where T : Entities.Truck
     {
-        protected void ValidateId()
+        protected void ValidateId(bool isEmpty = false)
         {
-            RuleFor(c => c.Id).NotEqual(Guid.Empty);
+            if (!isEmpty)
+            {
+                RuleFor(c => c.Id).NotEqual(Guid.Empty);
+            }
+            else
+            {
+                RuleFor(c => c.Id).Equal(Guid.Empty);
+            }
         }
 
         protected void ValidateDescription()
