@@ -13,15 +13,14 @@ using Xunit;
 
 namespace TruckRegistration.Tests.UnitTests.Application
 {
-    public class TruckServiceAppTest
+    public class TruckServiceAppTests
     {
-
         private readonly Mock<IMapper> _mapperMock;
         private readonly Mock<ITruckCommandHandler> _truckCommandHandlerMock;
         private readonly Mock<ITruckRepository> _truckRepositoryMock;
         private readonly TruckAppService _truckAppService;
 
-        public TruckServiceAppTest()
+        public TruckServiceAppTests()
         {
             _mapperMock = new Mock<IMapper>();
             _truckCommandHandlerMock = new Mock<ITruckCommandHandler>();
@@ -32,9 +31,8 @@ namespace TruckRegistration.Tests.UnitTests.Application
                 _truckRepositoryMock.Object);
         }
 
-        //[Fact(DisplayName = "Get All Trucks with items")]
-        [Fact]
-        public void GetAll_Test()
+        [Fact(DisplayName = "Get All Trucks with items")]
+        public async Task GetAll_Test_With_Items()
         {
             // Arrange
             _mapperMock.Setup(m => m.Map<IEnumerable<TruckResponse>>(It.IsAny<List<Truck>>()))
@@ -43,7 +41,7 @@ namespace TruckRegistration.Tests.UnitTests.Application
             _truckRepositoryMock.Setup(m => m.GetAll(false)).ReturnsAsync(TruckEntityMock.GetTruckList);
 
             // Act
-            var result = _truckAppService.GetAll().GetAwaiter().GetResult();
+            var result = await _truckAppService.GetAll();
 
             // Assert
             result.Should().NotBeNullOrEmpty();
