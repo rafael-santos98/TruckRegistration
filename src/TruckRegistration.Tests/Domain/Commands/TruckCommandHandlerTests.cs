@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using TruckRegistration.Domain.Commands;
 using TruckRegistration.Domain.Contracts.Repositories;
 using TruckRegistration.Domain.Entities;
-using TruckRegistration.Tests.Database.Entities;
+using TruckRegistration.Tests.UnitTest.Database.Entities;
 using Xunit;
 
-namespace TruckRegistration.Tests.UnitTests.Domain.Commands
+namespace TruckRegistration.Tests.UnitTest.Domain.Commands
 {
     public class TruckCommandHandlerTests
     {

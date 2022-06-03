@@ -3,11 +3,11 @@ using FluentAssertions;
 using TruckRegistration.Application.AutoMapper;
 using TruckRegistration.Application.Models.Response;
 using TruckRegistration.Domain.Entities;
-using TruckRegistration.Tests.Database.Entities;
-using TruckRegistration.Tests.Database.Models.Request;
+using TruckRegistration.Tests.UnitTest.Database.Entities;
+using TruckRegistration.Tests.UnitTest.Database.Models.Request;
 using Xunit;
 
-namespace TruckRegistration.Tests.UnitTests.Application.AutoMapper
+namespace TruckRegistration.Tests.UnitTest.Application.AutoMapper
 {
     public class AutoMapperMappingTests
     {

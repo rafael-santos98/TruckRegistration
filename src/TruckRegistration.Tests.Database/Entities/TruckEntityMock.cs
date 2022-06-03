@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TruckRegistration.Domain.Entities;
 using TruckRegistration.Domain.Entities.Enums;
-using TruckRegistration.Tests.Database.Utils.Extensions;
+using TruckRegistration.Tests.UnitTest.Database.Utils.Extensions;
 
-namespace TruckRegistration.Tests.Database.Entities
+namespace TruckRegistration.Tests.UnitTest.Database.Entities
 {
     public static class TruckEntityMock
     {

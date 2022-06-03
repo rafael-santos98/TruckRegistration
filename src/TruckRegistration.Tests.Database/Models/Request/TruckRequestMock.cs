@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TruckRegistration.Application.Models.Request;
-using TruckRegistration.Tests.Database.Entities;
+using TruckRegistration.Tests.UnitTest.Database.Entities;
 
-namespace TruckRegistration.Tests.Database.Models.Request
+namespace TruckRegistration.Tests.UnitTest.Database.Models.Request
 {
     public static class TruckRequestMock
     {

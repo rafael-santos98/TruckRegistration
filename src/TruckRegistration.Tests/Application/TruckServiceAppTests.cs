@@ -8,11 +8,11 @@ using TruckRegistration.Application.Services;
 using TruckRegistration.Domain.Contracts.Commands;
 using TruckRegistration.Domain.Contracts.Repositories;
 using TruckRegistration.Domain.Entities;
-using TruckRegistration.Tests.Database.Entities;
-using TruckRegistration.Tests.Database.Models.Response;
+using TruckRegistration.Tests.UnitTest.Database.Entities;
+using TruckRegistration.Tests.UnitTest.Database.Models.Response;
 using Xunit;
 
-namespace TruckRegistration.Tests.UnitTests.Application
+namespace TruckRegistration.Tests.UnitTest.Application
 {
     public class TruckServiceAppTests
     {
