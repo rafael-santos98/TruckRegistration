@@ -8,7 +8,7 @@ using TruckRegistration.Domain.Entities;
 using TruckRegistration.Tests.Database.Entities;
 using Xunit;
 
-namespace TruckRegistration.Tests.UnitTests.Domain
+namespace TruckRegistration.Tests.UnitTests.Domain.Commands
 {
     public class TruckCommandHandlerTests
     {
