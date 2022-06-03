@@ -14,11 +14,11 @@ namespace TruckRegistration.Tests.Database.Entities
             return GetTruckList(withGuidId).FirstOrDefault();
         }
 
-        public static List<Truck> GetTruckList(bool withGuidId = true, int itemsToGenerate = 10)
+        public static List<Truck> GetTruckList(bool withGuidId = true, int itemsToGenerate = 5)
         {
             var trucks = new List<Truck>();
 
-            while (itemsToGenerate >= 0)
+            while (itemsToGenerate > 0)
             {
                 var modelGenerated = GetRandomModel();
 
@@ -33,7 +33,7 @@ namespace TruckRegistration.Tests.Database.Entities
                     Color = GetRandomColor()
                 });
 
-                itemsToGenerate = itemsToGenerate = -1;
+                itemsToGenerate = itemsToGenerate -1;
             }
 
             return trucks;
