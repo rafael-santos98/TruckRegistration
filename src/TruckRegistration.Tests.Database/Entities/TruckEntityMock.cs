@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using TruckRegistration.Domain.Entities;
-using TruckRegistration.Tests.Database.Utils;
+using TruckRegistration.Domain.Entities.Enums;
+using TruckRegistration.Tests.Database.Utils.Extensions;
 
 namespace TruckRegistration.Tests.Database.Entities
 {
@@ -19,7 +20,7 @@ namespace TruckRegistration.Tests.Database.Entities
 
             while (itemsToGenerate > 0)
             {
-                var modelGenerated = TruckRandomUtil.GetRandomModel();
+                var modelGenerated = RandomExtension.RandomEnum<EModel>();
 
                 trucks.Add(new Truck()
                 {
@@ -27,9 +28,16 @@ namespace TruckRegistration.Tests.Database.Entities
                     Description = $"Volvo {modelGenerated.ToString()}",
                     Model = modelGenerated,
                     ManufactureYear = DateTime.Now.Year,
-                    ModelYear = TruckRandomUtil.GetRandomModelYear(),
-                    Renavam = TruckRandomUtil.GetRandomRenavan(),
-                    Color = TruckRandomUtil.GetRandomColor()
+                    ModelYear = RandomExtension.RandomInt(new int[] {
+                        DateTime.Now.Year,
+                        DateTime.Now.AddYears(1).Year
+                    }),
+                    Renavam = RandomExtension.RandomInt(initialValue: 10000000, endValue: 99999999).ToString().PadLeft(12, '0'),
+                    Color = RandomExtension.RandomString(new string[] {
+                        "White",
+                        "Blue",
+                        "Black"
+                    })
                 });
 
                 itemsToGenerate = itemsToGenerate - 1;
