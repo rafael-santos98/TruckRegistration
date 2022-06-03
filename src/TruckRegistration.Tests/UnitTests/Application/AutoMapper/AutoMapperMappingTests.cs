@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using FluentAssertions;
-using System.Threading.Tasks;
 using TruckRegistration.Application.AutoMapper;
 using TruckRegistration.Application.Models.Response;
 using TruckRegistration.Domain.Entities;
-using TruckRegistration.Tests.Entities;
+using TruckRegistration.Tests.Database.Entities;
+using TruckRegistration.Tests.Database.Models.Request;
 using Xunit;
 
 namespace TruckRegistration.Tests.UnitTests.Application.AutoMapper
@@ -25,10 +25,10 @@ namespace TruckRegistration.Tests.UnitTests.Application.AutoMapper
         }
 
         [Fact(DisplayName = "Validate Map AddTruckRequest To Truck Test is valid")]
-        public async Task Validate_Map_AddTruckRequestToTruck_Test_Is_Valid()
+        public void Validate_Map_AddTruckRequestToTruck_Test_Is_Valid()
         {
             // Arrange
-            var request = TruckEntityMock.GetAddTruckRequest();
+            var request = TruckRequestMock.GetAddTruck();
 
             // Act
             var result = _mapper.Map<Truck>(request);
@@ -45,10 +45,10 @@ namespace TruckRegistration.Tests.UnitTests.Application.AutoMapper
         }
 
         [Fact(DisplayName = "Validate Map UpdateTruckRequest To Truck Test is valid")]
-        public async Task Validate_Map_UpdateTruckRequestToTruck_Test_Is_Valid()
+        public void Validate_Map_UpdateTruckRequestToTruck_Test_Is_Valid()
         {
             // Arrange
-            var request = TruckEntityMock.GetUpdateTruckRequest();
+            var request = TruckRequestMock.GetUpdateTruck();
 
             // Act
             var result = _mapper.Map<Truck>(request);
@@ -65,7 +65,7 @@ namespace TruckRegistration.Tests.UnitTests.Application.AutoMapper
         }
 
         [Fact(DisplayName = "Validate Map Truck To TruckResponse Test is valid")]
-        public async Task Validate_Map_TruckToTruckResponse_Test_Is_Valid()
+        public void Validate_Map_TruckToTruckResponse_Test_Is_Valid()
         {
             // Arrange
             var model = TruckEntityMock.GetTruck();

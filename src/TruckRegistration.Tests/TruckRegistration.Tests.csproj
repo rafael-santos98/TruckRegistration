@@ -6,6 +6,7 @@
 
   <ItemGroup>
 	<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
+	<PackageReference Include="Bogus" Version="28.3.1" />
 	<PackageReference Include="Moq" Version="4.18.1" />
 	<PackageReference Include="Moq.AutoMock" Version="3.3.0" />
 	<PackageReference Include="FluentAssertions" Version="6.7.0" />
@@ -18,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TruckRegistration.Infra.CrossCutting.IoC\TruckRegistration.Infra.CrossCutting.IoC.csproj" />
+    <ProjectReference Include="..\TruckRegistration.Tests.Database\TruckRegistration.Tests.Database.csproj" />
   </ItemGroup>
 
 </Project>

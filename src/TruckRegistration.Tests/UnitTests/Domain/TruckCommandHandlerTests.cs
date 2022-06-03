@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using TruckRegistration.Domain.Commands;
 using TruckRegistration.Domain.Contracts.Repositories;
 using TruckRegistration.Domain.Entities;
-using TruckRegistration.Tests.Entities;
+using TruckRegistration.Tests.Database.Entities;
 using Xunit;
 
 namespace TruckRegistration.Tests.UnitTests.Domain

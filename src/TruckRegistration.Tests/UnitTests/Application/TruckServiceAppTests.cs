@@ -8,7 +8,8 @@ using TruckRegistration.Application.Services;
 using TruckRegistration.Domain.Contracts.Commands;
 using TruckRegistration.Domain.Contracts.Repositories;
 using TruckRegistration.Domain.Entities;
-using TruckRegistration.Tests.Entities;
+using TruckRegistration.Tests.Database.Entities;
+using TruckRegistration.Tests.Database.Models.Response;
 using Xunit;
 
 namespace TruckRegistration.Tests.UnitTests.Application
@@ -39,7 +40,7 @@ namespace TruckRegistration.Tests.UnitTests.Application
                 .ReturnsAsync(TruckEntityMock.GetTruckList());
 
             _mapperMock.Setup(m => m.Map<IEnumerable<TruckResponse>>(It.IsAny<List<Truck>>()))
-                .Returns(TruckEntityMock.GetTruckResponseList());
+                .Returns(TruckResponseMock.GetList());
 
             // Act
             var result = await _truckAppService.GetAll();
@@ -73,7 +74,7 @@ namespace TruckRegistration.Tests.UnitTests.Application
                 .ReturnsAsync(TruckEntityMock.GetTruck());
 
             _mapperMock.Setup(m => m.Map<TruckResponse>(It.IsAny<Truck>()))
-                .Returns(TruckEntityMock.GetTruckResponse());
+                .Returns(TruckResponseMock.GetTruck());
 
             // Act
             var result = await _truckAppService.GetById(It.IsAny<System.Guid>());
