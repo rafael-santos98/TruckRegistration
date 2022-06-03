@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Utils\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\TruckRegistration.Application\TruckRegistration.Application.csproj" />
     <ProjectReference Include="..\TruckRegistration.Domain\TruckRegistration.Domain.csproj" />
   </ItemGroup>

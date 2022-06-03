@@ -1,9 +1,8 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using TruckRegistration.Domain.Entities;
-using TruckRegistration.Domain.Entities.Enums;
+using TruckRegistration.Tests.Database.Utils;
 
 namespace TruckRegistration.Tests.Database.Entities
 {
@@ -20,48 +19,23 @@ namespace TruckRegistration.Tests.Database.Entities
 
             while (itemsToGenerate > 0)
             {
-                var modelGenerated = GetRandomModel();
+                var modelGenerated = TruckRandomUtil.GetRandomModel();
 
                 trucks.Add(new Truck()
                 {
                     Id = withGuidId ? System.Guid.NewGuid() : new System.Guid(),
                     Description = $"Volvo {modelGenerated.ToString()}",
                     Model = modelGenerated,
-                    ManufactureYear = 2022,
-                    ModelYear = 2023,
-                    Renavam = GetRandomRenavan(),
-                    Color = GetRandomColor()
+                    ManufactureYear = DateTime.Now.Year,
+                    ModelYear = TruckRandomUtil.GetRandomModelYear(),
+                    Renavam = TruckRandomUtil.GetRandomRenavan(),
+                    Color = TruckRandomUtil.GetRandomColor()
                 });
 
-                itemsToGenerate = itemsToGenerate -1;
+                itemsToGenerate = itemsToGenerate - 1;
             }
 
             return trucks;
-        }
-
-        private static EModel GetRandomModel()
-        {
-            var models = Enum.GetValues(typeof(EModel));
-
-            var modelItem = (EModel)models
-                .GetValue(new Random()
-                .Next(models.Length));
-
-            return modelItem;
-        }
-
-        private static string GetRandomRenavan()
-        {
-            return new Random().Next(10000000, 99999999)
-                .ToString()
-                .PadLeft(8, '0');
-        }
-
-        private static string GetRandomColor()
-        {
-            var models = new string[] { "White", "Blue", "Black" };
-
-            return (string)models.GetValue(new Random().Next(models.Length));
         }
     }
 }
