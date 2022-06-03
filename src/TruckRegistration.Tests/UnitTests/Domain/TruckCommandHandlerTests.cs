@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Moq;
+using System;
 using System.Threading.Tasks;
 using TruckRegistration.Domain.Commands;
 using TruckRegistration.Domain.Contracts.Repositories;
@@ -25,7 +26,7 @@ namespace TruckRegistration.Tests.UnitTests.Domain
         {
             // Arrange
             _truckRepositoryMock.Setup(m => m.SaveOrUpdate(It.IsAny<Truck>()))
-                .ReturnsAsync(TruckEntityMock.GetTruck(withGuidId: false));
+                .ReturnsAsync(TruckEntityMock.GetTruck());
 
             _truckRepositoryMock.Setup(m => m.Commit());
 
@@ -34,6 +35,7 @@ namespace TruckRegistration.Tests.UnitTests.Domain
 
             // Assert
             result.ValidationResult.IsValid.Should().BeTrue();
+            result.Id.Should().NotBe(Guid.Empty);
             _truckRepositoryMock.Verify(m => m.SaveOrUpdate(It.IsAny<Truck>()), Times.Once);
             _truckRepositoryMock.Verify(m => m.Commit(), Times.Once);
         }
