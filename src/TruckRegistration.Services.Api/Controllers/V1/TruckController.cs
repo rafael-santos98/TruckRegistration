@@ -41,9 +41,9 @@ namespace TruckRegistration.Services.Api.V1.Controllers
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(TruckResponse))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResponse))]
         [HttpPost]
-        public IActionResult Post([FromBody] AddTruckRequest request)
+        public async Task<IActionResult> Post([FromBody] AddTruckRequest request)
         {
-            var result = _truckAppService.Add(request).GetAwaiter().GetResult();
+            var result = await _truckAppService.Add(request);
 
             if (!result.IsValid)
             {
@@ -56,17 +56,17 @@ namespace TruckRegistration.Services.Api.V1.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResponse))]
         [HttpPut("{id:guid}")]
-        public IActionResult Put([FromRoute] Guid id, [FromBody] UpdateTruckRequest request)
+        public async Task<IActionResult> Put([FromRoute] Guid id, [FromBody] UpdateTruckRequest request)
         {
-            return CustomResponse(_truckAppService.Update(id, request).GetAwaiter().GetResult());
+            return CustomResponse(await _truckAppService.Update(id, request));
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResponse))]
         [HttpDelete("{id:guid}")]
-        public IActionResult Delete([FromRoute] Guid id)
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
-            return CustomResponse(_truckAppService.Delete(id).GetAwaiter().GetResult());
+            return CustomResponse(await _truckAppService.Delete(id));
         }
     }
 }
