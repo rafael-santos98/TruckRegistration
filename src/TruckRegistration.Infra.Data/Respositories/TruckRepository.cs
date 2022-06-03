@@ -11,10 +11,10 @@ namespace TruckRegistration.Infra.Data.Respositories
 {
     public class TruckRepository : ITruckRepository
     {
-        protected readonly DataContext Db;
+        protected readonly SqlServerDataContext Db;
         protected readonly DbSet<Truck> DbSet;
 
-        public TruckRepository(DataContext context)
+        public TruckRepository(SqlServerDataContext context)
         {
             Db = context;
             DbSet = Db.Set<Truck>();

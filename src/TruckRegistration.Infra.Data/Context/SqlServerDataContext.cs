@@ -9,13 +9,13 @@ using TruckRegistration.Infra.Data.Mappings;
 
 namespace TruckRegistration.Infra.Data.Context
 {
-    public sealed class DataContext : DbContext
+    public sealed class SqlServerDataContext : DbContext
     {
-        public DataContext()
+        public SqlServerDataContext()
         {
         }
 
-        public DataContext(DbContextOptions<DataContext> options) : base(options)
+        public SqlServerDataContext(DbContextOptions<SqlServerDataContext> options) : base(options)
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.TrackAll;
             ChangeTracker.AutoDetectChangesEnabled = false;

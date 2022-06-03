@@ -12,10 +12,10 @@ namespace TruckRegistration.Services.Api.Configurations
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
-            services.AddDbContext<DataContext>();
+            services.AddDbContext<SqlServerDataContext>();
         }
 
-        public static void UseAutoMigration(DataContext dataContext, IConfiguration configuration)
+        public static void UseAutoMigration(SqlServerDataContext dataContext, IConfiguration configuration)
         {
             var inMemoryDatabase = bool.Parse(configuration.GetSection("InMemoryDatabase").Value);
 

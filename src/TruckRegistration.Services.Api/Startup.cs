@@ -47,7 +47,7 @@ namespace TruckRegistration.Services.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext dataContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SqlServerDataContext dataContext)
         {
             // Use AutoMigration Configuration from Database
             DatabaseConfig.UseAutoMigration(dataContext, this.Configuration);

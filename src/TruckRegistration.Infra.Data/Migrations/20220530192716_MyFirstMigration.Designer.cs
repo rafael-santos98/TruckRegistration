@@ -9,7 +9,7 @@ using TruckRegistration.Infra.Data.Context;
 
 namespace TruckRegistration.Infra.Data.Migrations
 {
-    [DbContext(typeof(DataContext))]
+    [DbContext(typeof(SqlServerDataContext))]
     [Migration("20220530192716_MyFirstMigration")]
     partial class MyFirstMigration
     {

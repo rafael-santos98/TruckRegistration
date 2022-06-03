@@ -8,7 +8,7 @@ using TruckRegistration.Infra.Data.Context;
 
 namespace TruckRegistration.Infra.Data.Migrations
 {
-    [DbContext(typeof(DataContext))]
+    [DbContext(typeof(SqlServerDataContext))]
     partial class DataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
