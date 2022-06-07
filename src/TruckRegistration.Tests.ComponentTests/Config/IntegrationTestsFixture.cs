@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using TruckRegistration.Services.Api;
 using Xunit;
 
@@ -23,7 +21,7 @@ namespace TruckRegistration.Tests.ComponentTests.Config
             var clientOptions = new WebApplicationFactoryClientOptions
             {
                 AllowAutoRedirect = true,
-                BaseAddress = new Uri("http://localhost"),
+                BaseAddress = new Uri("http://localhost:7001"),
                 HandleCookies = true,
                 MaxAutomaticRedirections = 7
             };

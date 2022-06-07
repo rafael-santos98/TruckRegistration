@@ -60,8 +60,6 @@ namespace TruckRegistration.Services.Api
 
             app.UseAuthorization();
 
-            app.UseSwaggerSetup();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
