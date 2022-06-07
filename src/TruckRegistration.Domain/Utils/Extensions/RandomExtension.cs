@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace TruckRegistration.Tests.UnitTest.Database.Utils.Extensions
+namespace TruckRegistration.Domain.Utils.Extensions
 {
     public static class RandomExtension
     {

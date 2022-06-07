@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TruckRegistration.Application.Models.Response;
-using TruckRegistration.Domain.Contracts.Repositories;
 using TruckRegistration.Services.Api;
 using TruckRegistration.Tests.ComponentTests.Config;
 using Xunit;
