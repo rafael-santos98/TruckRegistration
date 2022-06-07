@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Stubs\**" />
+    <EmbeddedResource Remove="Stubs\**" />
+    <None Remove="Stubs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
 	<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
 	<PackageReference Include="Moq" Version="4.18.1" />
 	<PackageReference Include="Moq.AutoMock" Version="3.3.0" />
@@ -14,9 +20,6 @@
 	  <PrivateAssets>all</PrivateAssets>
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>
-  </ItemGroup>	
-  <ItemGroup>
-    <Folder Include="Stubs\" />
   </ItemGroup>
 
 </Project>
