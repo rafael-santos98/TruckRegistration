@@ -9,7 +9,7 @@ namespace TruckRegistration.Tests.ComponentTests.Controllers
     public class TruckControllerTest
     {
         private readonly IntegrationTestsFixture<StartupTest> _testsFixture;
-
+        private const string baseURI = "truck-registration/v1/trucks";
         public TruckControllerTest(IntegrationTestsFixture<StartupTest> testsFixture)
         {
             _testsFixture = testsFixture;
@@ -19,7 +19,7 @@ namespace TruckRegistration.Tests.ComponentTests.Controllers
         public async Task GetAll_Test_Contains_Items()
         {
             // Arrange & Act
-            var response = await _testsFixture.Client.GetAsync("truck-registration/v1/trucks");
+            var response = await _testsFixture.Client.GetAsync(baseURI);
 
             // Assert
             response.EnsureSuccessStatusCode();
