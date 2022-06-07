@@ -23,6 +23,7 @@ There may be several models of trucks.
 - AutoMapper
 - FluentValidator
 - Swagger UI
+- Xunit Tests with FluentAssertions
 
 ## Architecture:
 
@@ -30,6 +31,8 @@ There may be several models of trucks.
 - Domain Driven Design (Layers and Domain Model Pattern)
 - Domain Validations
 - Repository
+- Unit Tests
+- Component Tests
 
 ## How to use:
 - You will need the latest Visual Studio 2022 and the latest .NET Core SDK.
