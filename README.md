@@ -32,7 +32,7 @@ There may be several models of trucks.
 - Domain Validations
 - Repository
 - Unit Tests
-- Component Tests
+- Integration Tests
 
 ## How to use:
 - You will need the latest Visual Studio 2022 and the latest .NET Core SDK.
@@ -57,5 +57,4 @@ The Project can be used with **SQL Server Database**:
 - Começando com .NET Core, com Arquitetura em Camadas by [Alex Alves](https://alexalvess.medium.com/criando-uma-api-em-net-core-baseado-na-arquitetura-ddd-2c6a409c686#:~:text=Antes%20de%20come%C3%A7ar%2C%20DDD%20n%C3%A3o,%C3%A9%20independente%20da%20tecnologia%20utilizada.).
 - Entity Framework Core by [Microsoft](https://docs.microsoft.com/pt-br/ef/core/.).
 - Repository Pattern in ASP.NET Core – Ultimate Guide by [Mukesh Murugan](https://codewithmukesh.com/blog/repository-pattern-in-aspnet-core/#:~:text=A%20Repository%20pattern%20is%20a,to%20store%20or%20retreive%20data.).
- 
 - Entity Framework Core by [Enity Framework Tutorial](https://www.entityframeworktutorial.net/efcore/entity-framework-core-migration.aspx).

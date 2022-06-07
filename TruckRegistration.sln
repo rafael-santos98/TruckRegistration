@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TruckRegistration.Tests.Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TruckRegistration.Tests.UnitTests", "src\TruckRegistration.Tests.UnitTests\TruckRegistration.Tests.UnitTests.csproj", "{3243C284-5CCC-4259-93D9-D3945BF1A288}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TruckRegistration.Tests.ComponentTests", "src\TruckRegistration.Tests.ComponentTests\TruckRegistration.Tests.ComponentTests.csproj", "{939F9944-925A-4BCF-9F3B-F9C6BC7FF75F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TruckRegistration.Tests.IntegrationTests", "src\TruckRegistration.Tests.IntegrationTests\TruckRegistration.Tests.IntegrationTests.csproj", "{939F9944-925A-4BCF-9F3B-F9C6BC7FF75F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{7544E988-2B40-499C-AD6B-816DBDB147AD}"
 	ProjectSection(SolutionItems) = preProject

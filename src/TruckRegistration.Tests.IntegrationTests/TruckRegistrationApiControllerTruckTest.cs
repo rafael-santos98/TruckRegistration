@@ -6,11 +6,11 @@ using Xunit;
 namespace TruckRegistration.Tests.ComponentTests
 {
     [Collection(nameof(IntegrationApiTestsFixtureCollection))]
-    public class TruckRegistrationApiTest
+    public class TruckRegistrationApiControllerTruckTest
     {
         private readonly IntegrationTestsFixture<StartupTest> _testsFixture;
 
-        public TruckRegistrationApiTest(IntegrationTestsFixture<StartupTest> testsFixture)
+        public TruckRegistrationApiControllerTruckTest(IntegrationTestsFixture<StartupTest> testsFixture)
         {
             _testsFixture = testsFixture;
         }
