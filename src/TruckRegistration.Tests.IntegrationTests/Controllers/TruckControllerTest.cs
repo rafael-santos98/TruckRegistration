@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TruckRegistration.Application.Models.Response;
+using TruckRegistration.Domain.Contracts.Repositories;
 using TruckRegistration.Services.Api;
 using TruckRegistration.Tests.ComponentTests.Config;
 using Xunit;
@@ -13,7 +14,7 @@ namespace TruckRegistration.Tests.ComponentTests.Controllers
     public class TruckControllerTest
     {
         private readonly IntegrationTestsFixture<StartupTest> _testsFixture;
-        private const string baseURI = "truck-registration/v1/trucks";
+        private readonly string baseURI = "truck-registration/v1/trucks";
         public TruckControllerTest(IntegrationTestsFixture<StartupTest> testsFixture)
         {
             _testsFixture = testsFixture;
