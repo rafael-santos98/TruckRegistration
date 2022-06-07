@@ -13,11 +13,12 @@ namespace TruckRegistration.Infra.Data.Context
     {
         public SqlServerDataContext()
         {
+
         }
 
         public SqlServerDataContext(DbContextOptions<SqlServerDataContext> options) : base(options)
         {
-            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.TrackAll;
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
             ChangeTracker.AutoDetectChangesEnabled = false;
         }
 
@@ -41,7 +42,7 @@ namespace TruckRegistration.Infra.Data.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                IConfigurationRoot configuration = GetConfigurationRootDataBase();
+                var configuration = GetConfigurationRootDataBase();
 
                 if (IsInMemoryDatabase(configuration))
                 {
@@ -67,6 +68,11 @@ namespace TruckRegistration.Infra.Data.Context
         private bool IsInMemoryDatabase(IConfigurationRoot configurationRoot)
         {
             return bool.Parse(configurationRoot.GetSection("InMemoryDatabase").Value);
+        }
+
+        private bool IsInMemoryMockDatabase(IConfigurationRoot configurationRoot)
+        {
+            return bool.Parse(configurationRoot.GetSection("InMemoryMockDatabase").Value);
         }
     }
 }
