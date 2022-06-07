@@ -1,4 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using FluentAssertions;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using TruckRegistration.Application.Models.Response;
 using TruckRegistration.Services.Api;
 using TruckRegistration.Tests.ComponentTests.Config;
 using Xunit;
@@ -15,14 +19,29 @@ namespace TruckRegistration.Tests.ComponentTests.Controllers
             _testsFixture = testsFixture;
         }
 
-        [Fact(DisplayName = "Get All Trucks contains items")]
+        [Fact(DisplayName = "Get All Trucks with success and contains items")]
         public async Task GetAll_Test_Contains_Items()
         {
-            // Arrange & Act
+            // Arrange
+            IEnumerable<TruckResponse> trucks = null;
+
+            // Act
             var response = await _testsFixture.Client.GetAsync(baseURI);
 
+            if (response.IsSuccessStatusCode)
+            {
+                var contentResponse = await response.Content.ReadAsStringAsync();
+
+                if (contentResponse != null)
+                {
+                    trucks = JsonConvert.DeserializeObject<IEnumerable<TruckResponse>>(contentResponse);
+                }
+            }
+
             // Assert
-            response.EnsureSuccessStatusCode();
+            response.Should().BeSuccessful();
+            trucks.Should().NotBeNull();
+            trucks.Should().NotBeEmpty();
         }
     }
 }
